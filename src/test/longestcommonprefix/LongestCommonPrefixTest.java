@@ -9,7 +9,6 @@ public class LongestCommonPrefixTest {
 
     LongestCommonPrefix longestCommonPrefix;
 
-
     @Test
     void testLongestCommonPrefix() {
         String[] inputData = new String[3];
