@@ -2,45 +2,46 @@ package longestcommonprefix;
 
 public class LongestCommonPrefix {
 
-    final String[] prefixes;
+    final String[] strings;
 
     private final int shortestStringLength;
 
-    public LongestCommonPrefix(String[] prefixes) {
-        this.prefixes = prefixes;
+    public LongestCommonPrefix(String[] strings) {
+        this.strings = strings;
         shortestStringLength = findShortestString();
     }
 
     private int findShortestString() {
-        int currentShortest = prefixes[0].length();
-        for(int i = 1; i < prefixes.length; i++){
-            if(currentShortest > prefixes[i].length()){
-                currentShortest = prefixes[i].length();
+        int currentShortest = strings[0].length();
+        for(int i = 1; i < strings.length; i++){
+            if(currentShortest > strings[i].length()){
+                currentShortest = strings[i].length();
             }
         }
         return currentShortest;
     }
 
     public String calculateLongestPrefix() {
-        int numberOfStrings = prefixes.length;
-        String longestCommonPrefix = prefixes[0];
+        final int numberOfStrings = strings.length;
+        final StringBuilder longestCommonPrefix = new StringBuilder();
+        longestCommonPrefix.append("");
 
-        for (int i = 1; i < numberOfStrings; i++) {
-            String subject = prefixes[i];
+        // for each character within a string
+        for (int i = 0; i < shortestStringLength; i++) {
 
-            for(int j = 0; j < shortestStringLength; j++){
-                String subjectCharacter = subject.substring(j, j+1);
-                String currentLongestPrefixCharacter = longestCommonPrefix.substring(j, j+1);
+            //check for equality
+            for (int j = 0; j < numberOfStrings - 1; j++) {
+                char x = strings[j].charAt(i);
+                char y = strings[j + 1].charAt(i);
 
-                if (!subjectCharacter.equals(currentLongestPrefixCharacter)) {
-                    // stop where we are and truncate the rest of the string
-                    longestCommonPrefix = longestCommonPrefix.substring(0, j);
-                    break;
+                if(x != y) { // if chars aren't equal then just return the string.
+                    return longestCommonPrefix.toString();
                 }
             }
+
+            longestCommonPrefix.append(strings[0].charAt(i));
         }
 
-       return longestCommonPrefix;
+       return longestCommonPrefix.toString();
     }
-
 }
