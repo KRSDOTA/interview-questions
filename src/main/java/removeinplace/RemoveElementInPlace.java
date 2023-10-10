@@ -35,12 +35,14 @@ public class RemoveElementInPlace {
             }
         }
 
-        // sort array using linear sort
-        for (int i = 0; i < elements.length - 1; i++) {
-            if(elements[i] < elements[i+1]) { // move the smallest numbers to the end of the array
-                int buffer = elements[i + 1];
-                elements[i + 1] = elements[i];
-                elements[i] = buffer;
+        // sort array using bubble sort as it's an in-place algorithm.
+        for (int i = 0; i < elements.length; i++) {
+            for(int j = i + 1; j < elements.length; j++) {
+                if(elements[i] < elements[j]) { // move the smallest numbers to the end of the array
+                    int buffer = elements[j];
+                    elements[j] = elements[i];
+                    elements[i] = buffer;
+                }
             }
         }
 

@@ -6,6 +6,7 @@ import removeinplace.RemoveElementInPlace;
 import java.util.Arrays;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class RemoveElementInPlaceTest {
 
@@ -17,6 +18,6 @@ public class RemoveElementInPlaceTest {
         final int[] remainingElements = removeElementInPlace.getElements();
 
         assertEquals(2, actualK);
-        Arrays.equals(remainingElements, new int[]{2, 2, 0, 0});
+        assertTrue(Arrays.equals(remainingElements, new int[]{2, 2, 0, 0}));
     }
 }
