@@ -1,7 +1,5 @@
 package removeinplace;
 
-import java.util.Collections;
-
 public class RemoveElementInPlace {
 
     private int [] elements;
@@ -23,11 +21,16 @@ public class RemoveElementInPlace {
      * @return k
      */
     public int removeElementInPlace(int elementToRemove) {
+        int k = calculateK(elementToRemove);
+        sortArrayInPlace();
+        return k;
+    }
+
+    private int calculateK(int val) {
         int k = 0;
 
-        // count k
         for (int i = 0; i < elements.length; i++){
-            if(elements[i] != elementToRemove){
+            if(elements[i] != val){
                 k++;
             }
             else {
@@ -35,6 +38,10 @@ public class RemoveElementInPlace {
             }
         }
 
+        return k;
+    }
+
+    private void sortArrayInPlace() {
         // sort array using bubble sort as it's an in-place algorithm.
         for (int i = 0; i < elements.length; i++) {
             for(int j = i + 1; j < elements.length; j++) {
@@ -45,8 +52,6 @@ public class RemoveElementInPlace {
                 }
             }
         }
-
-        return k;
     }
 
     public int[] getElements() {
