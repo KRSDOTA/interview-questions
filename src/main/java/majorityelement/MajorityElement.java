@@ -7,29 +7,30 @@ public class MajorityElement {
 
     /**
      * Return the element which occurs the most number of times.
-     * Can safely assume that there will always be a majority element within the array.
-     *
+     * axiom #1 Assume that there will always be a majority element within the array.
      */
     public static int findMajorityElement(int[] nums) {
         final int majorityThreshold = (nums.length/2) + 1;
         final Map<Integer, Integer> map = new HashMap();
 
-        for(int i = 0; i < nums.length; i++) {
-            if(map.containsKey(nums[i])){
-                int numberOfTimesOccuring = map.remove(nums[i]);
-                numberOfTimesOccuring++;
-                if(numberOfTimesOccuring >= majorityThreshold){
-                    return nums[i];
-                }
-
-                map.put(nums[i], numberOfTimesOccuring);
-            } else {
-                map.put(nums[i], 1);
+        for (int i = 0; i < nums.length - 1; i++) {
+            final Integer element = nums[i];
+            final Integer mapValue = map.putIfAbsent(element, 1);
+            if(mapValue != null) {
+                incrementExistingElementInMap(map, element);
+            }
+            if(map.get(element) >= majorityThreshold){
+                return element;
             }
         }
 
-        return 0;
+        return nums[nums.length - 1]; // refer to axiom #1
     }
 
+    private static void incrementExistingElementInMap(Map<Integer, Integer> map, Integer element) {
+        int numberOfTimesOccuring = map.remove(element);
+        numberOfTimesOccuring++;
+        map.put(element, numberOfTimesOccuring);
+    }
 
 }
