@@ -16,7 +16,7 @@ public class RansomNoteMaker {
         final char[] magazineCharacters = magazine.toCharArray();
         final char[] ransomNoteCharacters = ransomNote.toCharArray();
 
-        if(ransomNoteCharacters.length > magazineCharacters.length || magazine.isBlank() || magazine.isEmpty()) {
+        if(ransomNoteCharacters.length > magazineCharacters.length) {
             return false;
         }
 
