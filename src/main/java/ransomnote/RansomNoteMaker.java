@@ -16,34 +16,37 @@ public class RansomNoteMaker {
         final char[] magazineCharacters = magazine.toCharArray();
         final char[] ransomNoteCharacters = ransomNote.toCharArray();
 
-        if(ransomNoteCharacters.length > magazineCharacters.length) {
+        if(ransomNoteCharacters.length > magazineCharacters.length || magazine.isBlank() || magazine.isEmpty()) {
             return false;
         }
 
-        // Make a hashmap where key == string value == # times occurred for ransomNote and magazine
-        final HashMap<Character, Integer> magazineCharactersMap = new HashMap<>();
+        final HashMap<Character, Integer> magazineCharactersMap = constructCharacterMap(magazineCharacters);
+        final HashMap<Character, Integer> ransomNoteMap = constructCharacterMap(ransomNoteCharacters);
 
-        for (int i = 0; i < magazineCharacters.length; i++){
-            final char character = magazineCharacters[i];
-            if (magazineCharactersMap.putIfAbsent(character, 1) != null) {
-                Integer numberOfTimesOccurred = magazineCharactersMap.remove(character) + 1;
-                magazineCharactersMap.put(character, numberOfTimesOccurred);
-            }
-        }
-
-        final HashMap<Character, Integer> ransomNoteMap = new HashMap<>();
         for (int i = 0; i < ransomNoteCharacters.length; i++){
             final char character = ransomNoteCharacters[i];
-            if (ransomNoteMap.putIfAbsent(character, 1) != null) {
-                Integer numberOfTimesOccurred = ransomNoteMap.remove(character) + 1;
-                ransomNoteMap.put(character, numberOfTimesOccurred);
+            final Integer timesInMagazine = magazineCharactersMap.get(character);
+            final Integer timesInNote = ransomNoteMap.get(character);
+            if(timesInMagazine == null || timesInNote > timesInMagazine) {
+                return false;
+            }
+
+        }
+
+        return true;
+    }
+
+    private HashMap<Character, Integer> constructCharacterMap(char[] input) {
+        final HashMap<Character, Integer> characterMap = new HashMap<>();
+
+        for (int i = 0; i < input.length; i++){
+            final char character = input[i];
+            if (characterMap.putIfAbsent(character, 1) != null) {
+                Integer numberOfTimesOccurred = characterMap.remove(character) + 1;
+                characterMap.put(character, numberOfTimesOccurred);
             }
         }
 
-        // compare the hashmaps
-        for (int i = 0; i < ransomNoteCharacters.length; i++){
-
-        }
+        return characterMap;
     }
-
 }
