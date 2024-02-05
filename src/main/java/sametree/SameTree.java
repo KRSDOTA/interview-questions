@@ -1,5 +1,7 @@
 package sametree;
 
+import java.util.Stack;
+
 public class SameTree {
 
     /**
@@ -11,23 +13,29 @@ public class SameTree {
      *
      * @param p first tree
      * @param q second tree
-     * @return
      */
     public boolean isSameTree(TreeNode p, TreeNode q) {
-        if (!doBranchesMatch(p, q) || p.val != q.val) {
-            return false;
-        }
+        final Stack<Integer> qNodeStack = new Stack<>();
+        final Stack<Integer> pNodeStack = new Stack<>();
 
-        isSameTree(p.left, q.left);
-        isSameTree(p.right, q.right);
+        populateNodeStack(p, pNodeStack);
+        populateNodeStack(q, qNodeStack);
 
-        return true;
+        return qNodeStack.equals(pNodeStack);
     }
 
-    private boolean doBranchesMatch(TreeNode p, TreeNode q) {
-        return (p.right != null && q.right == null) || (q.right != null && p.right == null) ||
-                (p.left != null && q.left == null) || (q.left != null && p.left == null);
-
+    /**
+     * Take a reference to a node and nodestack, if the node isn't null, add it to the stack and recursively
+     * do the same for left and right branch
+     */
+    private void populateNodeStack(TreeNode node, Stack<Integer> nodeStack) {
+        if(node != null) {
+            nodeStack.add(node.val);
+            populateNodeStack(node.left, nodeStack);
+            populateNodeStack(node.right, nodeStack);
+        } else {
+            nodeStack.add(null);
+        }
     }
 
 }
