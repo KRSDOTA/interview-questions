@@ -1,8 +1,8 @@
 package test.sametree;
 
 import org.junit.jupiter.api.Test;
-import sametree.SameTree;
-import sametree.TreeNode;
+import tree.SameTree;
+import tree.TreeNode;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

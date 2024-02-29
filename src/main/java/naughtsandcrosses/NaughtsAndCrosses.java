@@ -39,7 +39,15 @@ public class NaughtsAndCrosses {
             Collections.shuffle(availableBoardPositions);
             board[pointToAdd.getXCoordinate()][pointToAdd.getYCoordinate()] = shouldInsertCross ? CROSS : NAUGHT;
         }
+        printBoard();
+    }
 
+    void printBoard() {
         System.out.printf(Arrays.deepToString(board));
+
+    }
+
+    private boolean hasWon(){
+        return true;
     }
 }

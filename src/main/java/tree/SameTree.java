@@ -1,4 +1,4 @@
-package sametree;
+package tree;
 
 import java.util.Stack;
 
