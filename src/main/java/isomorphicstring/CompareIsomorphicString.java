@@ -16,6 +16,17 @@ public class CompareIsomorphicString {
         this.string2 = string2;
     }
 
+    /**
+     *
+     * "Isomorphic" - measure of sameness, How do we consider two strings to be mathematically
+     * "the same"
+     *
+     * One way is by seeing if the characters appear in the same order. But what if the crystalline structure of the string
+     * is also the same
+     *
+     * Two strings s and t are isomorphic if the characters in s can be replaced to get t. (And backwards!!)
+     *
+     */
     public boolean areStringsIsomorphic() {
         for (int i = 0; i < string1.length(); i++){
             char string1Char = string1.charAt(i);
@@ -25,6 +36,13 @@ public class CompareIsomorphicString {
             backwardsMap.putIfAbsent(string2Char, string1Char);
         }
 
-        return forwardMap.keySet().equals(backwardsMap.values()) && forwardMap.values().equals(backwardsMap.keySet());
+        final StringBuilder forwardTransformation = new StringBuilder(string1.length());
+        final StringBuilder backwardTransformation = new StringBuilder(string2.length());
+        for (int i = 0; i < string1.length(); i++) {
+            forwardTransformation.append(forwardMap.get(string1.charAt(i)));
+            backwardTransformation.append(backwardsMap.get(string2.charAt(i)));
+        }
+
+        return string2.contentEquals(forwardTransformation) && string1.contentEquals(backwardTransformation);
     }
 }
