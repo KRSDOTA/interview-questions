@@ -24,6 +24,7 @@ public class CompareIsomorphicString {
             forwardMap.putIfAbsent(string1Char, string2Char);
             backwardsMap.putIfAbsent(string2Char, string1Char);
         }
-        return forwardMap.size() == backwardsMap.size();
+
+        return forwardMap.keySet().equals(backwardsMap.values()) && forwardMap.values().equals(backwardsMap.keySet());
     }
 }

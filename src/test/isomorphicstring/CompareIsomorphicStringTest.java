@@ -24,7 +24,8 @@ class CompareIsomorphicStringTest {
           Arguments.of("egg", "add", true),
           Arguments.of("foo", "bar", false),
           Arguments.of("paper", "title", true),
-          Arguments.of("badc", "baba", false)
+          Arguments.of("badc", "baba", false),
+          Arguments.of("bbbaaaba", "aaabbbba", false)
         );
     }
 }
