@@ -1,4 +1,4 @@
-package test;
+package test.isomorphicstring;
 
 import isomorphicstring.CompareIsomorphicString;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -23,7 +23,8 @@ class CompareIsomorphicStringTest {
         return Stream.of(
           Arguments.of("egg", "add", true),
           Arguments.of("foo", "bar", false),
-          Arguments.of("paper", "little", true)
+          Arguments.of("paper", "title", true),
+          Arguments.of("badc", "baba", false)
         );
     }
 }
