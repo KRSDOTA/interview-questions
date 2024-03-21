@@ -1,6 +1,6 @@
 package sequence;
 
-public class ImpArithmeticSequence implements ArithmeticSequence {
+public class ExplicitArithmeticSequence implements ArithmeticSequence {
 
     @Override
     public int[] computeSequence(int k, int d, int n) {
