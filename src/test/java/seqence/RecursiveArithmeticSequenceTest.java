@@ -21,11 +21,11 @@ public class RecursiveArithmeticSequenceTest {
         );
     }
 
-//    @ParameterizedTest
-//    @MethodSource("TermsInput")
-//    void shouldCorrectlyMakeArithmeticSequencesGivenTheInput(int k, int d, int n, int[] expectedSequence) {
-//        assertEquals(expectedSequence, recursiveArithmeticSequence.computeSequence(k, d, n));
-//    }
+    @ParameterizedTest
+    @MethodSource("TermsInput")
+    void shouldCorrectlyMakeArithmeticSequencesGivenTheInput(int k, int d, int n, int[] expectedSequence) {
+        assertEquals(expectedSequence, recursiveArithmeticSequence.computeSequence(k, d, n));
+    }
 
     @Test
     void shouldComputeNextTerm(){
@@ -33,7 +33,7 @@ public class RecursiveArithmeticSequenceTest {
         int d = 100;
         int n = 3;
 
-        assertEquals(300, recursiveArithmeticSequence.computeNextTerm(k, n, d));
+        assertEquals(300, recursiveArithmeticSequence.computeTerm(k, n, d));
     }
 
 }
